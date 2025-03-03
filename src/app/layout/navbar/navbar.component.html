@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg border-bottom py-3">
+  <div class="container d-flex align-items-center">
+    <a class="navbar-brand" routerLink="home">
+      <img src="/logo-dark.svg" alt="logo" width="161px" height="35px">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item  my-lg-0 my-2">
+          <a class="nav-link text-capitalize custom-link px-0 mx-3" routerLink="home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item  my-lg-0 my-2">
+          <a class="nav-link text-capitalize custom-link px-0 mx-3" routerLink="products" routerLinkActive="active">Products</a>
+        </li>
+        <li class="nav-item  my-lg-0 my-2">
+          <a class="nav-link text-capitalize custom-link px-0 mx-3" routerLink="brands" routerLinkActive="active">Brands</a>
+        </li>
+        <li class="nav-item  my-lg-0 my-3">
+          <a class="nav-link text-capitalize custom-link px-0 mx-3" routerLink="categories" routerLinkActive="active">Categories</a>
+        </li>
+      </ul>
+      <!-- Search Bar -->
+      <div class="input-group search-container w-25 m-lg-0 m-auto">
+        <input type="text" class="form-control search-input border-0" placeholder="What are you looking for?">
+        <span class="input-group-text search-icon border-0">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+     @if(isLogin()){
+      <div>
+        <span class="ms-3 fs-5" routerLink="whishlist" type="button">
+          <i class="fa-regular fa-heart"></i>
+        </span>
+        <span class="ms-3 fs-5" routerLink="cart" type="button">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </span>
+      </div>
+     }
+      <div class="btn-group ms-2">
+        <span class="user fs-5 d-inline-block rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+          <i class="fa-regular fa-user"></i>
+        </span>
+        <ul class="dropdown-menu">
+          @if(!isLogin()){
+            <li><a class="dropdown-item" routerLink="register">Register</a></li>
+            <li><a class="dropdown-item" routerLink="login">LogIn</a></li>
+          }
+          @else {
+            <li><a class="dropdown-item" routerLink="myAccount">My Account</a></li>
+            <li><a class="dropdown-item" routerLink="myOrders">My Orders</a></li>
+            <li><a class="dropdown-item" type="button" (click)="authService.logOut()" >LogOut <i class="fa-solid fa-right-from-bracket"></i></a></li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

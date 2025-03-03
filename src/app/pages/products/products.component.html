@@ -1,0 +1,54 @@
+<section>
+  <div class="card-product overflow-hidden">
+    <div class="row gy-3">
+      @for (product of productsData(); track product._id) {
+        <div class="col-md-3 col-sm-6">
+          <div class="card border-0 position-relative hover-shadow">
+            <!-- Product Image Container -->
+            <div class="position-relative">
+              <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
+
+              <!-- Add to Cart Button (Inside Image Area) -->
+              <button class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+                style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%); transition-duration: .4s;">
+                Add To Cart
+              </button>
+            </div>
+
+            <div class="card-body">
+              <!-- Product Name -->
+              <h6 class="card-text">{{ product.title }}</h6>
+
+              <!-- Price -->
+              <div class="price my-2">
+                <span class="text-danger fw-bold">{{ product.price }}$</span>
+                <span class="text-muted text-decoration-line-through ms-2">$300</span>
+              </div>
+
+              <!-- Star Rating -->
+              <p class="mb-0">
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted">({{ product.ratingsQuantity }})</span>
+              </p>
+            </div>
+
+            <!-- Icons (Wishlist & View) -->
+            <div class="view position-absolute d-flex flex-column gap-2 mt-3">
+              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                <i class="fa-regular fa-heart"></i>
+              </span>
+              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                <i class="fa-regular fa-eye"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,433 @@
+<section class="">
+  <div class="row">
+    <div class="col-md-2 d-none d-md-block">
+      <div class="sidebar border-end">
+        <ul class="list-unstyled py-3">
+            @for (cat of cetegoriesData(); track cat._id) {
+              <li class="my-2  d-flex align-items-center justify-content-between pe-5"><a href="#" class="text-dark text-decoration-none flex-grow-1 d-inline-block">{{cat.name}} </a>
+                <i class="fa-solid fa-angle-right"></i>
+              </li>
+            }
+        </ul>
+    </div>
+    </div>
+    <div class="col-md-10 py-4 ps-md-5 ">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <div class="bg-black rounded-1 pt-2">
+              <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                  <div class="text-inner text-white">
+                    <span class="d-flex align-items-center gap-3">
+                      <i class="display-6 fa-brands fa-apple"></i>
+                      <span style="font-size: 14px;"> iPhone 14 Series</span>
+                    </span>
+                    <h1 style="line-height: 60px;">Up to 10% <br>off Voucher</h1>
+                    <a href="" class="text-decoration-none text-white">Shop Now  <i class="fa-solid fa-arrow-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                   <div class="" style="height: 315px;" >
+                    <img src="/7215f42e5883a64157f0aa3a4d1a866a.jpeg" class="object-fit-contain w-100 h-100" alt="">
+                   </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <div class="bg-black rounded-1 pt-2">
+              <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                  <div class="text-inner text-white">
+                    <span class="d-flex align-items-center gap-3">
+                      <i class="display-6 fa-brands fa-apple"></i>
+                      <span style="font-size: 14px;"> iPhone 14 Series</span>
+                    </span>
+                    <h1 style="line-height: 60px;">Up to 10% <br>off Voucher</h1>
+                    <a href="" class="text-decoration-none text-white">Shop Now  <i class="fa-solid fa-arrow-right"></i></a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="" style="height: 315px;" >
+                    <img src="/category-phones.webp" class="object-fit-contain w-100 h-100" alt="">
+                   </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="my-5 py-5" >
+  <div class="d-flex align-items-center">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Today's</span>
+  </div>
+  <div class=" d-flex my-4 ">
+    <h2 class="fs-2">Flash Sales</h2>
+    <div class="countdown-timer ms-5 ps-5">
+      <div class="time-box">
+        <span class="label">Days</span>
+        <span class="number">00</span>
+      </div>
+      <span class="dots">:</span>
+      <div class="time-box">
+        <span class="label">Hours</span>
+        <span class="number">00</span>
+      </div>
+      <span class="dots">:</span>
+      <div class="time-box">
+        <span class="label">Minutes</span>
+        <span class="number">00</span>
+      </div>
+      <span class="dots">:</span>
+      <div class="time-box">
+        <span class="label">Seconds</span>
+        <span class="number">00</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="custom-swiper-wrapper">
+    <swiper-container
+      loop="true"
+
+      speed="500"
+      autoplay="true"
+
+      pagination="true"
+      pagination-clickable="true"
+      pagination-dynamic-bullets="true"
+      grab-cursor="true"
+      [breakpoints]="breakpoints"
+    >
+      @for (product of productsData().slice(0,10); track product._id) {
+        <swiper-slide>
+          <div class="card border-0 position-relative mx-3 hover-shadow">
+            <div class="position-relative">
+              <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
+              <button class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+                style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%);
+                transition-duration: .4s;">
+                Add To Cart
+              </button>
+            </div>
+            <div class="card-body">
+              <h6 class="card-text">{{product.title}}</h6>
+              <div class="price my-2">
+                <span class="text-danger fw-bold">{{product.price}}$</span>
+                <span class="text-muted text-decoration-line-through ms-2">$300</span>
+              </div>
+              <p class="mb-0">
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted">({{product.ratingsQuantity}})</span>
+              </p>
+            </div>
+               <!-- Discount Badge -->
+               <div class="sale position-absolute mt-3">
+                <span class="badge text-bg-danger">-30%</span>
+              </div>
+
+              <!-- Icons (Wishlist & View) -->
+              <div class="view position-absolute d-flex flex-column gap-2 mt-3">
+                <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                  <i class="fa-regular fa-heart"></i>
+                </span>
+                <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+              </div>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+  <button class="text-white rounded-2 border-0 px-4 py-2 bg-main d-block m-auto my-4">View All Products</button>
+
+</section>
+
+<hr>
+
+
+<section class="my-5 py-5" >
+  <div class="d-flex align-items-center">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Categories</span>
+  </div>
+  <div class=" d-flex my-4 ">
+    <h2 class="fs-2">Browse By Categories</h2>
+
+
+  </div>
+  <div class="custom-swiper-wrapper">
+    <swiper-container
+      loop="true"
+
+      speed="500"
+      autoplay="true"
+
+      pagination="true"
+      pagination-clickable="true"
+      pagination-dynamic-bullets="true"
+      grab-cursor="true"
+      [breakpoints]="breakpoints"
+    >
+    @for (cat of cetegoriesData(); track cat._id) {
+        <swiper-slide>
+          <div class="card border-0 position-relative mx-3 hover-shadow">
+            <div class="position-relative">
+              <img [src]="cat.image" class="card-img-top w-100 object-fit-contain" height="200px" [alt]="cat.name">
+
+            </div>
+            <div class="card-body text-center">
+              <h6 class="card-text">{{cat.name}}</h6>
+              <div class="price my-2">
+                <span class="text-danger fw-bold">{{cat.slug}}</span>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+
+</section>
+
+<hr>
+
+<section class="my-5 py-5" >
+  <div class="d-flex align-items-center">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">This Month</span>
+  </div>
+  <div class=" d-flex my-4 justify-content-between w-100">
+    <h2 class="fs-2">Best Selling Products</h2>
+    <button class="text-white rounded-2 border-0 px-4 py-2 bg-main my-4">View All</button>
+  </div>
+  <div class="custom-swiper-wrapper">
+    <swiper-container
+      loop="true"
+
+      speed="500"
+      autoplay="true"
+
+      pagination="true"
+      pagination-clickable="true"
+      pagination-dynamic-bullets="true"
+      grab-cursor="true"
+      [breakpoints]="breakpoints"
+    >
+      @for (product of productsData().slice(11,17); track product._id) {
+        <swiper-slide>
+          <div class="card border-0 position-relative mx-3 hover-shadow">
+            <div class="position-relative">
+              <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
+              <button class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+                style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%);
+                transition-duration: .4s;">
+                Add To Cart
+              </button>
+            </div>
+            <div class="card-body">
+              <h6 class="card-text">{{product.title}}</h6>
+              <div class="price my-2">
+                <span class="text-danger fw-bold">{{product.price}}$</span>
+                <span class="text-muted text-decoration-line-through ms-2">$300</span>
+              </div>
+              <p class="mb-0">
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star"></i>
+                <i class="text-warning fa-solid fa-star-half-stroke"></i>
+                <span class="text-muted">({{product.ratingsQuantity}})</span>
+              </p>
+            </div>
+               <!-- Discount Badge -->
+              <!-- Icons (Wishlist & View) -->
+              <div class="view position-absolute d-flex flex-column gap-2 mt-3">
+                <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                  <i class="fa-regular fa-heart"></i>
+                </span>
+                <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+              </div>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+
+
+</section>
+
+
+<section>
+  <div class="bg-black rounded-1">
+    <div class="row">
+      <div class="col-md-10 m-auto">
+        <div class="row py-3">
+          <div class="col-md-7 d-flex flex-column justify-content-center align-items-md-start align-items-center">
+            <span class="btn-color">Categories</span>
+            <h1 class="text-white my-4">Enhance Your<br> Music Experience</h1>
+            <div class="d-flex text-center gap-3">
+              <div class="count bg-white "> <span class="fw-bold">23</span><br>Hours</div>
+              <div class="count bg-white "> <span class="fw-bold">3</span><br>Days</div>
+              <div class="count bg-white "> <span class="fw-bold">59</span><br>Minutes</div>
+              <div class="count bg-white "> <span class="fw-bold">35</span><br>seconds</div>
+            </div>
+            <div><button class="text-white rounded-2 border-0 px-4 py-2 bg-btn my-5">Buy Now</button></div>
+          </div>
+          <div class="col-md-5">
+            <img src="/music.png" class="w-100 img-buy" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="my-5 py-5" >
+  <div class="d-flex align-items-center">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Our Products</span>
+  </div>
+  <div class=" d-flex my-4 ">
+    <h2 class="fs-2">Explore Our Products</h2>
+
+
+  </div>
+
+  <div class="card-product overflow-hidden">
+    <div class="row gy-3">
+      @for (product of productsData().slice(-8); track product._id) {
+        <div class="col-md-3 col-sm-6">
+          <div class="card border-0 position-relative hover-shadow">
+            <!-- Product Image Container -->
+            <div class="position-relative">
+              <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
+
+              <!-- Add to Cart Button (Inside Image Area) -->
+              <button class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+                style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%); transition-duration: .4s;">
+                Add To Cart
+              </button>
+            </div>
+
+            <div class="card-body">
+              <!-- Product Name -->
+              <h6 class="card-text">{{ product.title }}</h6>
+
+              <!-- Price -->
+              <div class="price my-2 d-flex">
+                <span class="text-danger fw-bold">{{ product.price }}$</span>
+                <p class="ms-3">
+                  <i class="text-warning fa-solid fa-star"></i>
+                  <i class="text-warning fa-solid fa-star"></i>
+                  <i class="text-warning fa-solid fa-star"></i>
+                  <i class="text-warning fa-solid fa-star"></i>
+                  <i class="text-warning fa-solid fa-star-half-stroke"></i>
+                  <span class="text-muted">({{ product.ratingsQuantity }})</span>
+                </p>
+              </div>
+
+              <!-- Star Rating -->
+
+            </div>
+
+            <!-- Icons (Wishlist & View) -->
+            <div class="view position-absolute d-flex flex-column gap-2 mt-3">
+              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                <i class="fa-regular fa-heart"></i>
+              </span>
+              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+                <i class="fa-regular fa-eye"></i>
+              </span>
+            </div>
+
+            <div class="sale position-absolute mt-3">
+              <span class="badge text-white bg-btn">New</span>
+            </div>
+          </div>
+
+
+        </div>
+      }
+    </div>
+  </div>
+
+  <button class="text-white rounded-2 border-0 px-4 py-2 bg-main d-block m-auto my-4">View All Products</button>
+
+</section>
+
+
+<section class="py-5">
+  <div class="row">
+    <div class="col-md-10 m-auto">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="inner text-center">
+            <div class="bg-black icon rounded-circle d-flex justify-content-center align-items-center m-auto">
+              <i class="fa-solid fa-truck-fast text-white text-center"></i>
+            </div>
+            <p class="fw-bold mt-3 mb-0">FREE AND FAST DELIVERY
+            </p>
+            <span>Free delivery for all orders over $140</span>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="inner text-center">
+            <div class="bg-black icon rounded-circle d-flex justify-content-center align-items-center m-auto">
+              <i class="fa-solid fa-headset text-white"></i>
+            </div>
+            <p class="fw-bold mt-3 mb-0">24/7 CUSTOMER SERVICE
+            </p>
+            <span>Friendly 24/7 customer support</span>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="inner text-center">
+            <div class="bg-black icon rounded-circle d-flex justify-content-center align-items-center m-auto">
+              <i class="fa-solid fa-file-circle-check text-white"></i>
+            </div>
+            <p class="fw-bold mt-3 mb-0">MONEY BACK GUARANTEE
+            </p>
+            <span>We reurn money within 30 days</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,114 @@
+<section class="py-5 shadow my-5 px-3 rounded-2">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="/Sign up (1).gif" class="w-100 object-fit-contain" alt="">
+    </div>
+    <div class="col-md-5 d-flex align-items-center">
+      <div class="w-100">
+        <h4 class="fw-medium header-form">Create an Account</h4>
+        <span>Enter your details below</span>
+        <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="sumbitRegisterForm()">
+          <div class="form-floating mb-3">
+            @let nameControl = registerForm.get('name');
+            <input
+             type="text" class="form-control"
+            [class.is-invalid]="nameControl?.invalid && nameControl?.touched"
+            [class.is-valid]="nameControl?.valid && nameControl?.touched"
+            formControlName="name"
+            id="name" placeholder="eman shehata">
+            @if (nameControl?.invalid && nameControl?.touched) {
+              <div class="invalid-feedback">
+                Name must be 3-8 characters long.
+              </div>
+            }
+            <label for="name" class="px-0 text-muted">User Name<span class="text-danger">*</span></label>
+          </div>
+          <div class="form-floating mb-3">
+            @let emailControl = registerForm.get('email');
+            <input required type="email" class="form-control"
+            [class.is-invalid]="emailControl?.invalid && emailControl?.touched"
+            [class.is-valid]="emailControl?.valid && emailControl?.touched"
+            formControlName="email"
+            id="userEmail" placeholder="name@example.com">
+            @if (emailControl?.invalid && emailControl?.touched) {
+              <div class="invalid-feedback">
+                Please enter a valid email ex(emanshehatagmail.com)
+              </div>
+            }
+            <label for="userEmail" class="px-0 text-muted">User Email<span class="text-danger">*</span></label>
+          </div>
+          <div class="form-floating mb-3">
+            @let phoneControl = registerForm.get('phone');
+            <input required type="tel" class="form-control"
+            [class.is-invalid]="phoneControl?.invalid && phoneControl?.touched"
+            [class.is-valid]="phoneControl?.valid && phoneControl?.touched"
+            formControlName="phone"
+            id="phone" placeholder="+01 02020768625">
+            @if (phoneControl?.invalid && phoneControl?.touched) {
+              <div class="invalid-feedback">
+                Please enter a valid egyption phone ex: (+20) 01020768634
+              </div>
+            }
+            <label for="phone" class="px-0 text-muted">User Phone<span class="text-danger">*</span></label>
+          </div>
+          <div class="form-floating mb-3 position-relative">
+            @let passwordControl = registerForm.get('password');
+            <input required
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control pe-5"
+              [class.is-invalid]="passwordControl?.invalid && passwordControl?.touched"
+              [class.is-valid]="passwordControl?.valid && passwordControl?.touched"
+              formControlName="password"
+              id="userPassword"
+              placeholder="Eman1234">
+              @if (passwordControl?.invalid && passwordControl?.touched) {
+                <div class="invalid-feedback">
+                  Please enter a valid password ex: eman1234
+                </div>
+              }
+            <label for="userPassword" class="px-0 text-muted">User Password<span class="text-danger">*</span></label>
+
+            <!-- Eye Icon Positioned at the End -->
+            <span class="position-absolute end-0 top-50 translate-middle-y me-3 main-color"
+                  type="button" (click)="togglePassword()">
+              @if (showPassword) {
+                <i class="fa-solid fa-eye-slash"></i>
+              } @else {
+                <i class="fa-solid fa-eye"></i>
+              }
+            </span>
+          </div>
+          <div class="form-floating mb-3 position-relative">
+            @let rePasswordControl = registerForm.get('rePassword');
+            <input required
+            [type]="showRePassword ? 'text' : 'password'"
+              class="form-control pe-5"
+              [class.is-invalid]="rePasswordControl?.invalid && rePasswordControl?.touched"
+              [class.is-valid]="rePasswordControl?.valid && rePasswordControl?.touched"
+              formControlName="rePassword"
+              id="userRePassword"
+              placeholder="Eman1234">
+              @if (registerForm.errors?.['mismatch']&& rePasswordControl?.touched) {
+                <div class="invalid-feedback">
+                  Passwords do not match.
+                </div>
+              }
+            <label for="userRePassword" class="px-0 text-muted">User RePassword<span class="text-danger">*</span></label>
+
+            <!-- Eye Icon Positioned at the End -->
+            <span class="position-absolute end-0 top-50 translate-middle-y me-3 main-color"
+                  type="button" (click)="toggleRePassword()">
+                  <i class="fa-solid fa-eye-slash" [hidden]="!showRePassword"></i>
+                  <i class="fa-solid fa-eye" [hidden]="showRePassword"></i>
+            </span>
+          </div>
+          <button [disabled]="registerForm.invalid" type="sumbit" class=" bg-main text-white border-0 w-100 py-2 rounded-2"> Create Account @if (isLoading) {
+            <span><i class="fas fa-spin fa-spinner "></i></span>
+          }</button>
+          <span class="text-muted d-block text-center mt-2">Already have an Account?<a routerLink="/login" class="text-black text-decoration-underline ms-3 pb-1 underline-link" type="button"> Login</a></span>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
