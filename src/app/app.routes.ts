@@ -11,6 +11,9 @@ import { authGuard } from './core/guards/auth/auth.guard';
 import { WhishlistComponent } from './pages/whishlist/whishlist.component';
 import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { loginGuard } from './core/guards/login/login.guard';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 export const routes: Routes = [
   // {
@@ -29,6 +32,11 @@ export const routes: Routes = [
     path:'products',
     component:ProductsComponent,
     title:'products'
+  },
+  {
+    path:'productDetails/:id',
+    component:ProductDetailsComponent,
+    title:'productDetails'
   },
   {
     path:'categories',
@@ -50,29 +58,37 @@ export const routes: Routes = [
     path:'whishlist',
     component:WhishlistComponent,
     title:'whishlist',
-    canActivate:[authGuard]
+    // canActivate:[authGuard]
   },
   {
     path:'myOrders',
     component:MyOrdersComponent,
     title:'myOrders',
-    canActivate:[authGuard]
+    // canActivate:[authGuard]
   },
   {
     path:'myAccount',
     component:MyAccountComponent,
     title:'myAccount',
-    canActivate:[authGuard]
+    // canActivate:[authGuard]
   },
   {
     path:'login',
     component:LoginComponent,
-    title:'login'
+    title:'login',
+    canActivate:[loginGuard]
   },
   {
     path:'register',
     component:RegisterComponent,
-    title:'register'
+    title:'register',
+    canActivate:[loginGuard]
+  },
+  {
+    path:'forgetPassword',
+    component:ForgotPasswordComponent,
+    title:'forgetPassword',
+    canActivate:[loginGuard]
   },
   {
     path:'**',

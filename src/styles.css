@@ -71,3 +71,17 @@ button:disabled {
   background-color: #ccc !important;
   cursor: not-allowed;
 }
+
+
+
+
+
+
+
+
+
+
+
+swiper-container::part(bullet-active) {
+  background-color: #dc3545 !important;
+}

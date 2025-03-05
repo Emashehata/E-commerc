@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,20 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   userData: WritableSignal<any> = signal(null);
-  constructor(private httpClient:HttpClient, private router:Router) {
-    // this.restoreUserData();
+  constructor(private httpClient:HttpClient, private router:Router ,@Inject(PLATFORM_ID) id:object ) {
+    if(isPlatformBrowser(id)){
+          if(localStorage.getItem('user token') !==null){
+            this.verifyToken().subscribe({
+              next:()=>{
+                this.restoreUserData();
+              },
+              error:()=>{
+                this.logOut();
+              }
+            })
+    }
+    }
+
   }
 
   sendRegisterForm(data:object):Observable<any>
@@ -47,7 +60,21 @@ export class AuthService {
   }
 
 
-  verifyToken(){
+  verifyToken():Observable<any>{
     return this.httpClient.get(`${environment.baseUrl}/api/v1/auth/verifyToken`)
+  }
+
+
+  forgetPassword(data:object):Observable<any>{
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/auth/forgotPasswords`,data)
+  }
+
+
+  verifyCode(data:object):Observable<any>{
+    return this.httpClient.post(`${environment.baseUrl}/api/v1/auth/verifyResetCode`,data)
+  }
+
+  updatePassword(data:object):Observable<any>{
+    return this.httpClient.put(`${environment.baseUrl}/api/v1/auth/resetPassword`,data);
   }
 }

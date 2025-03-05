@@ -2,6 +2,7 @@ import { Injectable, WritableSignal, signal, effect } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { IProduct } from '../../../shared/interfaces/iproduct';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,17 @@ export class ProductsService {
     this.httpClient
       .get<{ data: IProduct[] }>(`${environment.baseUrl}/api/v1/products`)
       .subscribe({
-        next: (res) => this.productsData.set(res.data)
+        next: (res) => {
+          this.productsData.set(res.data)
+        // console.log(res.data)
+        ;
+        }
       });
+  }
+
+
+  getSpecficProduct(id:string | null):Observable<any>{
+    return this.httpClient.get(`${environment.baseUrl}/api/v1/products/${id}`)
   }
 }
 

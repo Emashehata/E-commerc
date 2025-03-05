@@ -1,1 +1,153 @@
-<p>product-details works!</p>
+<section class="my-5">
+  <div class="row gy-5">
+    <div class="col-md-5">
+      <section class="product-gallery">
+        <!-- Main Swiper (Large Image) -->
+        <div class="mainSwiper">
+          <swiper-container
+            [thumbs]="{ swiper: thumbsSwiper }"
+            loop="true"
+            navigation="true"
+            (slideChange)="onSlideChange($event)"
+          >
+            <swiper-slide>
+              <img [src]="selectedImage()" class="rounded w-100" />
+            </swiper-slide>
+          </swiper-container>
+        </div>
+
+        <!-- Thumbnail Swiper (Moved Below) -->
+        <div class="thumbnail-wrapper">
+          <swiper-container
+            direction="horizontal"
+            class="thumbnailSwiper"
+            space-between="5"
+            slides-per-view="4"
+            free-mode="true"
+            watch-slides-progress="true"
+            #thumbsSwiper
+          >
+            @for (img of deatilsProduct()?.images; track img) {
+              <swiper-slide (click)="selectedImage.set(img)">
+                <img [src]="img" class="thumbnail-img" [class.active]="selectedImage() === img" />
+              </swiper-slide>
+            }
+          </swiper-container>
+        </div>
+      </section>
+    </div>
+    <div class="col-md-6">
+      <h2>{{ deatilsProduct()?.title }}</h2>
+      <p class="text-warning">
+        <i class="text-warning fa-solid fa-star"></i>
+        <i class="text-warning fa-solid fa-star"></i>
+        <i class="text-warning fa-solid fa-star"></i>
+        <i class="text-warning fa-solid fa-star"></i>
+        <span class="sec-color">
+          <i class="fa-solid fa-star"></i>
+          ({{ deatilsProduct()?.ratingsQuantity }} Reviews)  <span class="mx-2">|</span>
+        </span>
+        @if (deatilsProduct()?.quantity) {
+          <span class="btn-color">In Stock</span>
+        }
+        @else {
+          <span class="text-danger">Out of Stock</span>
+        }
+      </p>
+      <h3 class="">${{ deatilsProduct()?.price }}</h3>
+      <p>{{ deatilsProduct()?.description }}</p>
+
+      <div>
+        <p><strong>Brand:</strong> {{ deatilsProduct()?.brand?.name }}</p>
+      </div>
+
+      <div class="">
+        <button (click)="addProductToCart(deatilsProduct()?._id??'')" class=" bg-main text-white border-0 w-100 py-2 rounded-2">Buy Now +</button>
+      </div>
+
+      <div class="card my-4" style="">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-1 d-flex align-items-center">
+                <i class="fa-solid fa-truck-fast fs-4"></i>
+              </div>
+              <div class="col-8">
+                <p><strong>Free Delivery</strong><br>
+                  <a href="#" class="text-black">Enter your postal code for Delivery Availability</a></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-1 d-flex align-items-center">
+                <i class="fa-solid fa-rotate fs-4"></i>
+              </div>
+              <div class="col-8">
+                <p><strong>Return Delivery</strong><br>Free 30 Days Delivery Returns. <a href="#" class="text-black">Details</a></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <section class="my-5 py-5" >
+      <div class="d-flex align-items-center">
+        <div class="header">
+        </div>
+
+        <div class=" d-flex my-4 justify-content-between align-items-center w-100">
+          <span class="ms-2 main-color fw-semibold d-block">Related Products</span>
+          <button class="text-white rounded-2 border-0 px-4 py-2 bg-main my-4">View All</button>
+        </div>
+      </div>
+
+      <div class="custom-swiper-wrapper">
+        <swiper-container
+          loop="true"
+
+          speed="500"
+          autoplay="true"
+
+          pagination="true"
+          pagination-clickable="true"
+          pagination-dynamic-bullets="true"
+          grab-cursor="true"
+          [breakpoints]="breakpoints"
+        >
+          @for (product of productsData(); track product._id) {
+            @if(product.category.name === deatilsProduct()?.category?.name){
+              <swiper-slide>
+                <div class="card border-0 position-relative mx-3 hover-shadow">
+                  <div class="position-relative">
+                    <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
+                    <button (click)="addProductToCart(product._id)" class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+                      style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%);
+                      transition-duration: .4s;">
+                      <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-text">{{product.title}}</h6>
+                    <div class="price my-2">
+                      <span class="text-danger fw-bold">{{product.price}}$</span>
+                      <span class="text-muted text-decoration-line-through ms-2">$300</span>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </swiper-slide>
+            }
+          }
+        </swiper-container>
+      </div>
+
+
+    </section>
+  </div>
+</section>

@@ -32,10 +32,19 @@
      @if(isLogin()){
       <div>
         <span class="ms-3 fs-5" routerLink="whishlist" type="button">
-          <i class="fa-regular fa-heart"></i>
+          <i class="fa-regular fa-heart position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </i>
+
         </span>
         <span class="ms-3 fs-5" routerLink="cart" type="button">
-          <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-cart-shopping position-relative">
+            <span class="count text-white position-absolute top-0 start-100 translate-middle  bg-danger border border-light rounded-circle">
+               {{countCart}}
+            </span>
+          </i>
         </span>
       </div>
      }

@@ -9,9 +9,9 @@
               <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
 
               <!-- Add to Cart Button (Inside Image Area) -->
-              <button class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
+              <button (click)="addProductToCart(product._id)" class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
                 style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%); transition-duration: .4s;">
-                Add To Cart
+                <i class="fa-solid fa-cart-plus"></i>  Add To Cart
               </button>
             </div>
 
@@ -38,10 +38,10 @@
 
             <!-- Icons (Wishlist & View) -->
             <div class="view position-absolute d-flex flex-column gap-2 mt-3">
-              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+              <span type="button" (click)="addProductToWhishList(product._id)" class="badge text-bg-light rounded-circle p-2 fs-6">
                 <i class="fa-regular fa-heart"></i>
               </span>
-              <span class="badge text-bg-light rounded-circle p-2 fs-6">
+              <span type="button" [routerLink]='["/productDetails",product._id]' class="badge text-bg-light rounded-circle p-2 fs-6">
                 <i class="fa-regular fa-eye"></i>
               </span>
             </div>
