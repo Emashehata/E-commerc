@@ -1,0 +1,111 @@
+<section class="py-5 shadow my-5 px-3 rounded-2">
+
+
+
+      <div class="text-center">
+        <h2 class="fw-medium header-form">CheckOut Order</h2>
+        <span>Enter your details below to make order</span>
+        <form class="mt-4" [formGroup]="checkoutForm"  (ngSubmit)="submitOrder()">
+
+          <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-5">
+              <div class="form-floating mb-3">
+                @let detailsControl = checkoutForm.get('details');
+                <textarea class="form-control"
+                [class.is-invalid]="detailsControl?.invalid && detailsControl?.touched"
+                [class.is-valid]="detailsControl?.valid && detailsControl?.touched"
+                formControlName="details"
+                id="userDetails" placeholder="i want my order to come after two days"></textarea>
+                @if (detailsControl?.invalid && detailsControl?.touched) {
+                  <div class="invalid-feedback">
+                    Please enter a valid details
+                  </div>
+                }
+                <label for="userDetails" class="px-0 text-muted">User details<span class="text-danger">*</span></label>
+              </div>
+
+
+              <div class="form-floating mb-3">
+                @let phoneControl = checkoutForm.get('phone');
+                <input type="tel" class="form-control"
+                [class.is-invalid]="phoneControl?.invalid && phoneControl?.touched"
+                [class.is-valid]="phoneControl?.valid && phoneControl?.touched"
+                formControlName="phone"
+                id="userPhone" placeholder="i want my order to come after two days">
+                @if (phoneControl?.invalid && phoneControl?.touched) {
+                  <div class="invalid-feedback">
+                    Please enter a valid egyptian phone number
+                  </div>
+                }
+                <label for="userPhone" class="px-0 text-muted">User Phone<span class="text-danger">*</span></label>
+              </div>
+
+
+              <div class="form-floating mb-3">
+                @let cityControl = checkoutForm.get('city');
+                <input type="text" class="form-control"
+                [class.is-invalid]="cityControl?.invalid && cityControl?.touched"
+                [class.is-valid]="cityControl?.valid && cityControl?.touched"
+                formControlName="city"
+                id="userCity" placeholder="i want my order to come after two days">
+                @if (cityControl?.invalid && cityControl?.touched) {
+                  <div class="invalid-feedback">
+                    Please enter a valid egyptian phone number
+                  </div>
+                }
+                <label for="userCity" class="px-0 text-muted">User City<span class="text-danger">*</span></label>
+              </div>
+            </div>
+            <div class="col-12 col-md-5">
+              <div class="cart-total p-4">
+                <h5>Cart Total</h5>
+                <p class="mt-4 d-flex justify-content-between">
+                  <span>Subtotal:</span>
+                  <span>{{ cartData()?.['totalCartPrice'] ?? 0 }}$</span>
+                </p>
+                <hr>
+                <p class="mt-4 d-flex justify-content-between">
+                  <span>Shipping:</span>
+                  <span>Free</span>
+                </p>
+                <hr>
+                <p class="mt-4 d-flex justify-content-between">
+                  <span>Total:</span>
+                  <span>{{ cartData()?.['totalCartPrice'] ?? 0 }}$</span>
+                </p>
+                <div class=" mb-3 mb-md-0">
+                  <div class="d-flex flex-column flex-sm-row my-4">
+                    <input type="text" class="form-control me-sm-2 border border-1 rounded-2 border-black" placeholder="Coupon Code">
+                    <button class="text-white rounded-2 border-0 px-4 text-nowrap bg-main py-2 mt-2 mt-sm-0">
+                      Apply Coupon
+                    </button>
+                  </div>
+                </div>
+                <div class="my-4">
+                  <div class="  custom-radio my-3 form-check d-flex align-items-center gap-1">
+                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="cash" id="cashPayment" checked>
+                    <label class="form-check-label" for="cashPayment">Cash on Delivery</label>
+                  </div>
+                  <div class=" custom-radio form-check d-flex align-items-center gap-1">
+                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="online" id="onlinePayment">
+                    <label class="form-check-label" for="onlinePayment">Online Payment</label>
+                  </div>
+                </div>
+
+                <button [disabled]="checkoutForm.invalid" type="sumbit" class=" bg-main text-white border-0 w-100 py-2 rounded-2">Place Order
+                  @if (isLoading) {
+                  <span><i class="fas fa-spin fa-spinner "></i></span>
+                  }
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </form>
+
+      </div>
+
+</section>

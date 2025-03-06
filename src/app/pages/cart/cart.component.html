@@ -98,7 +98,9 @@
           <span>Total:</span>
           <span>{{ cartData()?.['totalCartPrice'] ?? 0 }}$</span>
         </p>
-        <button class="text-white rounded-2 border-0 px-4 text-nowrap bg-main py-2 w-100">
+        <button
+        [routerLink]="['/checkout', cartId]"
+         class="text-white rounded-2 border-0 px-4 text-nowrap bg-main py-2 w-100">
           Proceed to checkout
         </button>
       </div>

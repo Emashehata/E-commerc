@@ -14,6 +14,7 @@ export class CartComponent {
     private readonly cartService=inject(CartService);
     private readonly toastrService=inject(ToastrService);
     cartData: WritableSignal<Data | null> = signal(null);
+    cartId: string | undefined;
 
     ngOnInit(): void {
       this.getUserCart();
@@ -24,6 +25,7 @@ export class CartComponent {
           console.log(res.data);
           if(res.status=='success'){
             this.cartData.set(res.data);
+            this.cartId=res.data._id;
           }
 
         }

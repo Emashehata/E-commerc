@@ -12,6 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
 
   userData: WritableSignal<any> = signal(null);
+  userID: WritableSignal<string | null> = signal(null);
   constructor(private httpClient:HttpClient, private router:Router ,@Inject(PLATFORM_ID) id:object ) {
     if(isPlatformBrowser(id)){
           if(localStorage.getItem('user token') !==null){
@@ -43,7 +44,8 @@ export class AuthService {
 
     if (token !== null) {
       this.userData.set(jwtDecode(token)); // Use .set() to update the signal
-      console.log(this.userData());
+      console.log('user data',this.userData().id);
+      this.userID.set(this.userData().id || null);
     }
   }
 
@@ -56,6 +58,7 @@ export class AuthService {
   {
     localStorage.removeItem('user token');
     this.userData.set(null);
+    this.userID.set(null);
     this.router.navigate(['/login'])
   }
 

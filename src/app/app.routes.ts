@@ -14,6 +14,7 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { loginGuard } from './core/guards/login/login.guard';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const routes: Routes = [
   // {
@@ -61,7 +62,7 @@ export const routes: Routes = [
     // canActivate:[authGuard]
   },
   {
-    path:'myOrders',
+    path: 'allorders',
     component:MyOrdersComponent,
     title:'myOrders',
     // canActivate:[authGuard]
@@ -70,6 +71,12 @@ export const routes: Routes = [
     path:'myAccount',
     component:MyAccountComponent,
     title:'myAccount',
+    // canActivate:[authGuard]
+  },
+  {
+    path:'checkout/:id',
+    component:CheckoutComponent,
+    title:'checkout',
     // canActivate:[authGuard]
   },
   {

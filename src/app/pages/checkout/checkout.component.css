@@ -1,0 +1,27 @@
+/* Custom radio styling */
+.custom-radio .form-check-input {
+
+  border: 2px solid black !important; /* Black border */
+  appearance: none !important; /* Remove default styling */
+  border-radius: 50% !important; /* Make it round */
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* When radio is checked, change background and border to black */
+.custom-radio .form-check-input:checked {
+  background-color: black !important; /* Black checked color */
+  border-color: black !important;
+}
+
+/* Custom focus outline */
+.custom-radio .form-check-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Adjust label spacing */
+.custom-radio .form-check-label {
+  margin-left: 6px !important; /* Small spacing between radio and text */
+  cursor: pointer !important;
+}
