@@ -49,7 +49,6 @@ export class CartComponent {
         console.log(res);
         // this.toastrService.success(res.message);
         this.cartData.set(res.data);
-        this.cartService.cartNumbers.next(0);
 
       }
 
@@ -64,6 +63,7 @@ export class CartComponent {
         if(res.message==='success'){
           this.cartData.set(null);
           this.toastrService.success('All products are deleted successfully');
+          this.cartService.cartNumbers.next(0);
         }
 
       }

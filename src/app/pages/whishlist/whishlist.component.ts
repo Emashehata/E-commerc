@@ -28,6 +28,8 @@ export class WhishlistComponent {
             if(res.status=='success'){
               this.whishlistData.set(res.data);
               console.log(this.whishlistData());
+              console.log(res);
+
 
             }
 
@@ -54,11 +56,12 @@ export class WhishlistComponent {
     removeWhishlistItem(id:string):void{
       this.whishListService.removeSpecificwhishlistItem(id).subscribe({
         next:(res)=>{
-          console.log(res);
+          console.log(res.data.length);
           if(res.status=='success'){
             // this.whishlistData.set(res.data);
             this.getUserWhishlist();
             this.toastrService.success(res.message);
+            this.whishListService.whishlistNumbers.next(res.data.length);
           }
 
         }

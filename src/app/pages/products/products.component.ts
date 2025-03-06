@@ -44,9 +44,10 @@ export class ProductsComponent implements OnInit{
 addProductToWhishList(id:string):void{
   this.whishListService.addProductToWhishlist(id).subscribe({
     next:(res)=>{
-      console.log(res);
+      console.log(res.data.length);
       if(res.status=='success'){
         this.toastrService.success(res.message);
+        this.whishListService.whishlistNumbers.next(res.data.length);
 
       }
 

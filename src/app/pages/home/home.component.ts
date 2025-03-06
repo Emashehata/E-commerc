@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
             console.log(res);
             if(res.status=='success'){
               this.toastrService.success(res.message);
-              // this.whishListService.whishlistNumbers.next(res.length());
+              this.whishListService.whishlistNumbers.next(res.data.length);
             }
 
           }
