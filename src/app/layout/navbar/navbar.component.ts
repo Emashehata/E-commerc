@@ -16,15 +16,17 @@ export class NavbarComponent {
   countCart! :number;
 
   ngOnInit(): void {
-    this.cartService.cartNumbers.subscribe({
-      next:(value)=>{
-        this.countCart=value;
-      }
-    })
-    this.cartService.getLoggedUserCart().subscribe({
-      next:(res)=>{
-        this.cartService.cartNumbers.next(res.numOfCartItems)
-      }
-    })
+    if(this.isLogin()){
+      this.cartService.cartNumbers.subscribe({
+        next:(value)=>{
+          this.countCart=value;
+        }
+      })
+      this.cartService.getLoggedUserCart().subscribe({
+        next:(res)=>{
+          this.cartService.cartNumbers.next(res.numOfCartItems)
+        }
+      })
+    }
   }
 }
