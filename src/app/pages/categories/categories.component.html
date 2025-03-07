@@ -1,1 +1,29 @@
-<p>categories works!</p>
+<section class="my-5">
+  <div class="d-flex align-items-center my-5">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Categories</span>
+  </div>
+  <div class="row gy-5">
+    @for (cat of cetegoriesData(); track cat._id){
+      <div class="col-md-3">
+        <div class="card border-0 position-relative mx-3 hover-shadow">
+          <div class="position-relative">
+            <img [src]="cat.image" class="card-img-top w-100 object-fit-contain" height="200px" [alt]="cat.name">
+
+          </div>
+          <div class="card-body text-center">
+            <h6 class="card-text">{{cat.name}}</h6>
+            <div class="price my-2">
+              <span class="text-danger fw-bold">{{cat.slug}}</span>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    }
+  </div>
+</section>

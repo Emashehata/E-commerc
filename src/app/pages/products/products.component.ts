@@ -22,10 +22,21 @@ export class ProductsComponent implements OnInit{
 
 
   productsData:WritableSignal<IProduct[]>=signal([]);
+  totalPages: WritableSignal<number> = signal(1);
+  currentPage: WritableSignal<number> = signal(1);
 
   ngOnInit(): void {
     this.productsData = this.productsService.productsData;
+    this.totalPages = this.productsService.totalPages;
+    this.currentPage = this.productsService.currentPage;
+    this.productsService.fetchAllProducts(this.currentPage());
   }
+
+  changePage(newPage: number): void {
+  if (newPage >= 1 && newPage <= this.totalPages()) {
+    this.productsService.fetchAllProducts(newPage); // ✅ Fetch new data & update UI
+  }
+}
 
   addProductToCart(id:string):void{
     this.cartService.addProductToCart(id).subscribe({

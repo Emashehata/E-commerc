@@ -67,9 +67,9 @@ export class RegisterComponent implements OnInit{
           next: (res) => {
             console.log(res);
             if(res.message === 'success' ){
-              this.toastrService.success('Congrats , Account created successfully');
+              this.toastrService.success('Account was created successfully');
               setTimeout(() => {
-                localStorage.setItem('user token',res.token);
+                // localStorage.setItem('user token',res.token);
                 this.authService.saveUserData();
                 this.router.navigate(['./login']);
               }, 500);

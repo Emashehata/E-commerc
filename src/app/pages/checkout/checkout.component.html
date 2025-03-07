@@ -83,11 +83,11 @@
                 </div>
                 <div class="my-4">
                   <div class="  custom-radio my-3 form-check d-flex align-items-center gap-1">
-                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="cash" id="cashPayment" checked>
+                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" [ngModelOptions]="{standalone: true}" value="cash" id="cashPayment" checked>
                     <label class="form-check-label" for="cashPayment">Cash on Delivery</label>
                   </div>
                   <div class=" custom-radio form-check d-flex align-items-center gap-1">
-                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="online" id="onlinePayment">
+                    <input class="form-check-input" type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" [ngModelOptions]="{standalone: true}"ng value="online" id="onlinePayment">
                     <label class="form-check-label" for="onlinePayment">Online Payment</label>
                   </div>
                 </div>

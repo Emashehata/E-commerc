@@ -1,1 +1,35 @@
-<p>brands works!</p>
+<section class="my-5">
+  <div class="d-flex align-items-center my-5">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Brands</span>
+  </div>
+  <div class="row gy-3">
+    @for (brand of brandsData(); track brand._id) {
+      <div class="col-md-3 col-sm-6">
+        <div class="card border-0 position-relative hover-shadow">
+          <div class="position-relative">
+            <img [src]="brand.image" class="card-img-top" [alt]="brand.name">
+          </div>
+          <!-- <div class="card-body">
+            <h6 class="card-text">{{ brand.name }}</h6>
+          </div> -->
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-end align-items-center my-4">
+    <button class="text-white rounded-2 border-0 px-4 py-2 bg-main" (click)="changePage(currentPage() - 1)" [disabled]="currentPage() === 1">
+      Previous
+    </button>
+
+    <span class="mx-3 fw-bold">Page {{ currentPage() }} of {{ totalPages() }}</span>
+
+    <button class="text-white rounded-2 border-0 px-4 py-2 bg-main" (click)="changePage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">
+      Next
+    </button>
+  </div>
+</section>
+

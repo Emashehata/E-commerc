@@ -1,105 +1,88 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
-import { BrandsComponent } from './pages/brands/brands.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { authGuard } from './core/guards/auth/auth.guard';
-import { WhishlistComponent } from './pages/whishlist/whishlist.component';
-import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { loginGuard } from './core/guards/login/login.guard';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { ProductDetailsComponent } from './pages/product-details/product-details.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const routes: Routes = [
-  // {
-  //   path:'',
-  //   redirectTo:'home',
-  //   pathMatch:'full'
-
-  // },
   {
-    path:'home',
-    component:HomeComponent,
-    title:'home'
-
+    path: '',
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
-    path:'products',
-    component:ProductsComponent,
-    title:'products'
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    title: 'Home'
   },
   {
-    path:'productDetails/:id',
-    component:ProductDetailsComponent,
-    title:'productDetails'
+    path: 'products',
+    loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent),
+    title: 'Products'
   },
   {
-    path:'categories',
-    component:CategoriesComponent,
-    title:'categories'
+    path: 'productDetails/:id',
+    loadComponent: () => import('./pages/product-details/product-details.component').then(m => m.ProductDetailsComponent),
+    title: 'Product Details'
   },
   {
-    path:'brands',
-    component:BrandsComponent,
-    title:'brands'
+    path: 'categories',
+    loadComponent: () => import('./pages/categories/categories.component').then(m => m.CategoriesComponent),
+    title: 'Categories'
   },
   {
-    path:'cart',
-    component:CartComponent,
-    title:'cart',
-
+    path: 'brands',
+    loadComponent: () => import('./pages/brands/brands.component').then(m => m.BrandsComponent),
+    title: 'Brands'
   },
   {
-    path:'whishlist',
-    component:WhishlistComponent,
-    title:'whishlist',
-    // canActivate:[authGuard]
+    path: 'cart',
+    loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent),
+    title: 'Cart',
+    canActivate: [authGuard]
+  },
+  {
+    path: 'whishlist',
+    loadComponent: () => import('./pages/whishlist/whishlist.component').then(m => m.WhishlistComponent),
+    title: 'Wishlist',
+    canActivate: [authGuard]
   },
   {
     path: 'allorders',
-    component:MyOrdersComponent,
-    title:'myOrders',
-    // canActivate:[authGuard]
+    loadComponent: () => import('./pages/my-orders/my-orders.component').then(m => m.MyOrdersComponent),
+    title: 'My Orders',
+    canActivate: [authGuard]
   },
   {
-    path:'myAccount',
-    component:MyAccountComponent,
-    title:'myAccount',
-    // canActivate:[authGuard]
+    path: 'myAccount',
+    loadComponent: () => import('./pages/my-account/my-account.component').then(m => m.MyAccountComponent),
+    title: 'My Account',
+    canActivate: [authGuard]
   },
   {
-    path:'checkout/:id',
-    component:CheckoutComponent,
-    title:'checkout',
-    // canActivate:[authGuard]
+    path: 'checkout/:id',
+    loadComponent: () => import('./pages/checkout/checkout.component').then(m => m.CheckoutComponent),
+    title: 'Checkout',
+    canActivate: [authGuard]
   },
   {
-    path:'login',
-    component:LoginComponent,
-    title:'login',
-    canActivate:[loginGuard]
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+    title: 'Login',
+    canActivate: [loginGuard]
   },
   {
-    path:'register',
-    component:RegisterComponent,
-    title:'register',
-    canActivate:[loginGuard]
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent),
+    title: 'Register',
+    canActivate: [loginGuard]
   },
   {
-    path:'forgetPassword',
-    component:ForgotPasswordComponent,
-    title:'forgetPassword',
-    canActivate:[loginGuard]
+    path: 'forgetPassword',
+    loadComponent: () => import('./pages/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
+    title: 'Forget Password',
+    canActivate: [loginGuard]
   },
   {
-    path:'**',
-    component:NotfoundComponent,
-    title:'notfound'
-  },
+    path: '**',
+    loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent),
+    title: 'Not Found'
+  }
 ];

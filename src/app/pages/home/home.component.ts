@@ -37,6 +37,9 @@ export class HomeComponent implements OnInit {
 
 
   }
+
+
+
   getCategoriesData():void{
 
     this.categoriesService.getAllCategories().subscribe({

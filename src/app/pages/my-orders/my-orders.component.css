@@ -1,0 +1,48 @@
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.badge {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.bg-success {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #155724;
+}
+
+.bg-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #721c24;
+}
+
+.bg-warning {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #856404;
+}
+.product-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.more-products {
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.more-products:hover {
+  text-decoration: underline;
+  color: #000;
+}
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}

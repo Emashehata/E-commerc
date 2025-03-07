@@ -1,1 +1,65 @@
-<p>my-orders works!</p>
+<section class="my-5 py-5 px-5 rounded-2 shadow">
+  <div class="d-flex align-items-center mb-4">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Your Orders</span>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order No</th>
+          <th>Order Date</th>
+          <th>Product Name</th>
+          <th>Payment Status</th>
+          <th>Price</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of ordersData(); track order.id) {
+          <tr>
+            <td>#{{ order._id }}</td>
+            <td>{{ order.createdAt | date: 'MMM d, y' }}</td>
+            <td>
+              @if (order.cartItems.length > 0 && order.cartItems[0]?.product?.title) {
+                <span class="product-title">{{ order.cartItems[0].product.title }}</span>
+              } @else {
+                <span class="text-muted">No Product</span>
+              }
+              @if (order.cartItems.length > 1) {
+                <span
+                  class="more-products"
+                  [title]="getProductNames(order.cartItems)"
+                >
+                  +{{ order.cartItems.length - 1 }} more
+                </span>
+              }
+            </td>
+            <td>
+              <span
+                class="badge"
+                [class.bg-success]="order.isPaid"
+                [class.bg-danger]="!order.isPaid"
+              >
+                ● {{ order.isPaid ? 'Paid' : 'Due' }}
+              </span>
+            </td>
+            <td>${{ order.totalOrderPrice }}</td>
+            <td>
+              <span
+                class="badge"
+                [class.bg-success]="order.isDelivered"
+                [class.bg-warning]="!order.isDelivered && order.isPaid"
+                [class.bg-danger]="!order.isPaid"
+              >
+                ● {{ order.isDelivered ? 'Completed' : order.isPaid ? 'Pending' : 'Cancelled' }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</section>

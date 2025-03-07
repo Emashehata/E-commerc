@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
   productsData: WritableSignal<IProduct[]> = signal([]); // Store product data
+  totalPages: WritableSignal<number> = signal(1);
+  currentPage: WritableSignal<number> = signal(1);
+  productsAllData: WritableSignal<IProduct[]> = signal([]);
 
   constructor(private httpClient: HttpClient) {
     this.fetchProducts(); // Automatically fetch data when service is created
@@ -20,8 +23,22 @@ export class ProductsService {
       .subscribe({
         next: (res) => {
           this.productsData.set(res.data)
-        // console.log(res.data)
+        console.log(res)
         ;
+        }
+      });
+  }
+
+  fetchAllProducts(page: number = 1, limit: number = 8): void {
+    this.httpClient
+      .get<{ data: IProduct[], metadata: { numberOfPages: number } }>(
+        `${environment.baseUrl}/api/v1/products?page=${page}&limit=${limit}`
+      )
+      .subscribe({
+        next: (res) => {
+          this.productsData.set(res.data);
+          this.totalPages.set(res.metadata.numberOfPages);
+          this.currentPage.set(page);
         }
       });
   }

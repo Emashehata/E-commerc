@@ -1,31 +1,28 @@
-<section>
+<section class="my-5 ">
+  <div class="d-flex align-items-center my-3">
+    <div class="header">
+    </div>
+    <span class="ms-2 main-color fw-semibold">Our Products</span>
+  </div>
   <div class="card-product overflow-hidden">
-    <div class="row gy-3">
+    <div class="row gy-4">
       @for (product of productsData(); track product._id) {
         <div class="col-md-3 col-sm-6">
           <div class="card border-0 position-relative hover-shadow">
-            <!-- Product Image Container -->
             <div class="position-relative">
               <img [src]="product.imageCover" class="card-img-top" [alt]="product.title">
-
-              <!-- Add to Cart Button (Inside Image Area) -->
               <button (click)="addProductToCart(product._id)" class="position-absolute bg-black text-white py-2 border-0 opacity-0 transition-opacity rounded-1 hover:opacity-100"
                 style="bottom: 0;width: 90%; left: 50%; transform: translateX(-50%); transition-duration: .4s;">
-                <i class="fa-solid fa-cart-plus"></i>  Add To Cart
+                <i class="fa-solid fa-cart-plus"></i> Add To Cart
               </button>
             </div>
 
             <div class="card-body">
-              <!-- Product Name -->
               <h6 class="card-text">{{ product.title }}</h6>
-
-              <!-- Price -->
               <div class="price my-2">
                 <span class="text-danger fw-bold">{{ product.price }}$</span>
                 <span class="text-muted text-decoration-line-through ms-2">$300</span>
               </div>
-
-              <!-- Star Rating -->
               <p class="mb-0">
                 <i class="text-warning fa-solid fa-star"></i>
                 <i class="text-warning fa-solid fa-star"></i>
@@ -36,7 +33,6 @@
               </p>
             </div>
 
-            <!-- Icons (Wishlist & View) -->
             <div class="view position-absolute d-flex flex-column gap-2 mt-3">
               <span type="button" (click)="addProductToWhishList(product._id)" class="badge text-bg-light rounded-circle p-2 fs-6">
                 <i class="fa-regular fa-heart"></i>
@@ -46,9 +42,20 @@
               </span>
             </div>
           </div>
-
         </div>
       }
     </div>
   </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-end align-items-center my-5">
+    <button class="text-white rounded-2 border-0 px-4 py-2 bg-main" (click)="changePage(currentPage() - 1)" [disabled]="currentPage() === 1">
+      Previous
+    </button>
+    <span class="mx-3 fw-bold">Page {{ currentPage() }} of {{ totalPages() }}</span>
+    <button class="text-white rounded-2 border-0 px-4 py-2 bg-main" (click)="changePage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">
+      Next
+    </button>
+  </div>
 </section>
+
